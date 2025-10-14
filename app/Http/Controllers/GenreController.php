@@ -7,9 +7,16 @@ use App\Models\Genre;
 
 class GenreController extends Controller
 {
+    // Syntaks dibawah adalah tugas pertemuan 1 Laravel.
+    // public function index(){
+    //     $data = new Genre();
+    //     $genres = $data->getGenres();
+    //     return view('genres', ['genres' => $genres]);
+    // }
+
+    // Syntaks dibawah adalah tugas pertemuan 2 Laravel.
     public function index(){
-        $data = new Genre();
-        $genres = $data->getGenres();
+        $genres = Genre::all();
         return view('genres', ['genres' => $genres]);
     }
 }

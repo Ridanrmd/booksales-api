@@ -10,7 +10,7 @@
 
     @foreach ($genres as $item)
         <ul>
-            <li>{{ $item['genre_id'] }}</li>
+            <!-- <li>{{ $item['genre_id'] }}</li> -->
             <li>{{ $item['name'] }}</li>
             <li>{{ $item['description'] }}</li>
         </ul>

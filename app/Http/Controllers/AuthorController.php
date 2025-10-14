@@ -7,9 +7,18 @@ use App\Models\Author;
 
 class AuthorController extends Controller
 {
+    // Syntaks dibawah adalah tugas pertemuan 1 Laravel.
+
+
+    //     public function index(){
+    //     $data = new Author();
+    //     $authors = $data->getAuthors();
+    //     return view('authors', ['authors' => $authors]);
+    // }
+
+    // Syntaks dibawah adalah tugas pertemuan 2 Laravel.
         public function index(){
-        $data = new Author();
-        $authors = $data->getAuthors();
+        $authors = Author::all();
         return view('authors', ['authors' => $authors]);
     }
 }

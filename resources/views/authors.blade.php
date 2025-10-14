@@ -10,7 +10,7 @@
 
     @foreach ($authors as $item)
         <ul>
-            <li>{{ $item['author_id'] }}</li>
+            <!-- <li>{{ $item['author_id'] }}</li> -->
             <li>{{ $item['name'] }}</li>
             <li>{{ $item['bio'] }}</li>
         </ul>
