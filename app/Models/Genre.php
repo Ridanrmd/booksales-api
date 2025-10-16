@@ -43,4 +43,10 @@ class Genre extends Model
 
     // Syntaks dibawah adalah tugas pertemuan 2 Laravel.
     protected $table = 'genres';
+
+    protected $fillable = [
+        'name',
+        'genre_id',
+        'description'
+    ];
 }

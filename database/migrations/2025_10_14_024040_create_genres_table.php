@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('genre_id');
             $table->text('description');
             $table->timestamps();
         });

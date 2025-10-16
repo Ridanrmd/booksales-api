@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use Illuminate\Support\Facades\Validator;
 
 class AuthorController extends Controller
 {
@@ -26,6 +27,38 @@ class AuthorController extends Controller
             "success" => true,
             "message" => "Get All Authors",
             "data" => $authors
+        ],200);
+    }
+
+    // Syntaks dibawah adalah tugas pertemuan 4 Laravel.
+    public function store(Request $request){
+        // 1. Validator
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:100',
+            'author_id' => 'required|integer',   
+            'bio' => 'required|string'
+        ]); 
+
+        // 2. Check validator error
+        if ($validator->fails()) {
+            return response()->json([
+                "success" => false,
+                "message" => $validator->errors()
+            ],422);
+        }    
+
+        // 3. Insert Data
+        $author = Author::create([
+            'name' => $request->name,
+            'author_id' => $request->author_id,
+            'bio' => $request->bio
+        ]);
+
+        // 4. Response
+        return response()->json([
+            "success" => true,
+            "message" => "Create Author",
+            "data" => $author
         ],200);
     }
 }
