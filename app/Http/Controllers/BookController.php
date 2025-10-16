@@ -18,6 +18,12 @@ class BookController extends Controller
     // Syntaks dibawah adalah tugas pertemuan 2 Laravel.
         public function index(){
         $books = Book::all();
-        return view('books', ['books' => $books]);
+        // return view('books', ['books' => $books]);
+
+        return response()->json([
+            "success" => true,
+            "message" => "Get All Books",
+            "data" => $books
+        ],200);
     }
 }
