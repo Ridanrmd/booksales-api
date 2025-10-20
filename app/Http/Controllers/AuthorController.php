@@ -61,4 +61,82 @@ class AuthorController extends Controller
             "data" => $author
         ],200);
     }
+
+    // Syntaks dibawah adalah tugas pertemuan 5 Laravel.
+    public function show(string $id){
+        $author = Author::find($id);
+
+        if(!$author){
+            return response()->json([
+                "success" => false,
+                "message" => "Author Not Found"
+            ],404);
+        }
+
+        return response()->json([
+            "success" => true,
+            "message" => "Get Author Detail",
+            "data" => $author
+        ],200);
+    }
+
+    public function destroy(string $id){
+        $author = Author::find($id);
+
+        if(!$author){
+            return response()->json([
+                "success" => false,
+                "message" => "Author Not Found"
+            ],404);
+        }
+
+        $author->delete();
+
+        return response()->json([
+            "success" => true,
+            "message" => "Author Deleted Successfully"
+        ],200);
+    }
+
+    public function update(string $id, Request $request){
+        // 1. Mencari data
+        $author = Author::find($id);
+
+        if (!$author){
+            return response()->json([
+                "success" => false,
+                "message" => "Author Not Found"
+            ],404);
+        }
+
+        // 2. Validator
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:100',
+            'author_id' => 'required|integer',   
+            'bio' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "success" => false,
+                "message" => $validator->errors()
+            ],422);
+        }
+
+        // 3. Siapkan data yg ingin diupdate
+        $data = [
+            'name' => $request->name,
+            'author_id' => $request->author_id,
+            'bio' => $request->bio
+        ];
+
+        // 4. Update data
+        $author->update($data);
+
+        return response()->json([
+            "success" => true,
+            "message" => "Author Updated Successfully",
+            "data" => $author
+        ],200);
+    }
 }
