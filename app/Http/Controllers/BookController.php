@@ -23,6 +23,13 @@ class BookController extends Controller
         $books = Book::all();
         // return view('books', ['books' => $books]);
 
+        if($books->isEmpty()){
+            return response()->json([
+                "success" => true,
+                "message" => "No Books Found"
+            ],200);
+        }
+
         return response()->json([
             "success" => true,
             "message" => "Get All Books",
